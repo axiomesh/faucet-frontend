@@ -1,6 +1,4 @@
 {
-  "private": true,
-  "author": "yiaimoli <1163005951@qq.com>",
   "scripts": {
     "dev": "max dev",
     "build": "max build",
@@ -10,6 +8,11 @@
     "setup": "max setup",
     "start": "npm run dev"
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-components": "^2.4.4",

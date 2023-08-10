@@ -10,6 +10,7 @@ export default defineConfig({
   // initialState: {},
   // request: {},
   // layout: {},
+  jsMinifier: 'terser',
   proxy: {
     '/api': {
       // target: 'http://10.1.40.179:8088/',

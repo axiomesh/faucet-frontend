@@ -12,10 +12,13 @@ export default defineConfig({
   // layout: {},
   jsMinifier: 'terser',
   proxy: {
+    '/faucet': {
+      target: 'http://172.16.13.132:8080/',
+      changeOrigin: true,
+    },
+
     '/api': {
-      // target: 'http://10.1.40.179:8088/',
-      // target: 'http://172.16.13.132:8080/',
-      target: 'https://sepoliafaucet.com/',
+      target: 'http://172.16.13.126:18080/',
       changeOrigin: true,
     },
   },

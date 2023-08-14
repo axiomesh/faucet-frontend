@@ -46,7 +46,7 @@ export default async function request(params: any) {
         }
     } catch (e) {
         const err = e.response ? e.response.data : e;
-        const msg = err?.message || e.message || err;
+        const msg = err?.msg || err?.message || e.message || err;
 
         // message.error(msg);
         return Promise.reject(msg);

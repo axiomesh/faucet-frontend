@@ -5,8 +5,8 @@ export async function postAddress(val) {
     url: '/faucet/nativeToken',
     method: 'post',
     data: {
-      "net":"bxh",
-      "address":val,
+      net:"axm",
+      address:val,
     }
   });
 }

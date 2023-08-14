@@ -3,12 +3,11 @@ import { Input, Button } from 'antd';
 import footImg from '@/assets/logoDark.png';
 import CanvasPage from './mask';
 import { useState } from 'react';
-import { postAddress } from "@/services/home";
+import { postAddress } from '@/services/home';
 
 const HomePage: React.FC = () => {
   const [show, setShow] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-  const [errCode, setErrCode] = useState(0);
   const [val, setVal] = useState('');
   const [hash, setHash] = useState('');
 
@@ -23,32 +22,23 @@ const HomePage: React.FC = () => {
     } else {
       setErrMsg('');
     }
-    setShow(true);
     try{
       const res = await postAddress(val);
       setHash(res.txHash);
       if(res.msg !== 'ok') {
-        setTimeout(() => {
-          setErrMsg(res.msg);
-          setShow(false);
-        }, 5000)
+        setErrMsg(res.msg);
       } else {
+        setShow(true);
         setErrMsg('');
       }
     } catch (e){
-      setErrCode(500);
-      // setErrMsg(e)
+      setErrMsg(typeof (e) === 'string' ? e : '')
     }
 
   }
 
   const handleCancel = () => {
-    setErrCode(0);
     setShow(false)
-  }
-
-  const handleGitHub = () => {
-    window.open('https://github.com/axiomesh/explorer-frontend')
   }
 
   return (
@@ -93,7 +83,7 @@ const HomePage: React.FC = () => {
       </div>
       <div className={styles.footer}>
         <div className={styles.first}>
-          <img src={footImg} width={234} alt='' />
+          <img src={footImg} width={234} alt=''/>
           <div style={{display: 'flex'}}>
             <div className={styles.icon}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +102,7 @@ const HomePage: React.FC = () => {
         <div style={{color: '#CBD5E0'}}>Axiomesh All rights reserved</div>
       </div>
       {
-        show ? <CanvasPage errorCode={errCode} hash={hash} onCancel={handleCancel} /> : null
+        show ? <CanvasPage hash={hash} onCancel={handleCancel} /> : null
       }
     </div>
   );

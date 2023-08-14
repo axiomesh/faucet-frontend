@@ -2,10 +2,9 @@ import styles from './index.less';
 import { Button } from 'antd';
 import Lottie from 'react-lottie'
 import jsonFile from '../../../public/project.json';
-import { Link } from 'umi'
 
 const CanvasPage: React.FC = (props) => {
-  const { onCancel, errorCode, hash } = props;
+  const { onCancel, hash } = props;
   const Options = {
     loop: false,
     autoplay: true,
@@ -15,8 +14,7 @@ const CanvasPage: React.FC = (props) => {
   return (
     <div className={styles.mask}>
       <Lottie options={Options} height="100vh" width="100vw" />
-      {!errorCode ?
-        <div className={styles.maskText}>
+      <div className={styles.maskText}>
         <div className={styles.maskCancel}>
           <svg onClick={onCancel} xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
             <path d="M18.5855 16.2303C19.3666 17.0114 20.6329 17.0114 21.4139 16.2303L27.0714 10.5729C27.7222 9.92209 28.7773 9.92209 29.4281 10.5729C30.0788 11.2236 30.0788 12.2788 29.4281 12.9295L23.7706 18.587C22.9896 19.368 22.9896 20.6344 23.7706 21.4154L29.4281 27.0729C30.0788 27.7236 30.0788 28.7788 29.4281 29.4295C28.7773 30.0803 27.7222 30.0803 27.0714 29.4295L21.4139 23.7721C20.6329 22.991 19.3666 22.991 18.5855 23.7721L12.9281 29.4295C12.2773 30.0803 11.2222 30.0803 10.5714 29.4295C9.92062 28.7788 9.92062 27.7236 10.5714 27.0729L16.2289 21.4154C17.0099 20.6344 17.0099 19.368 16.2289 18.587L10.5714 12.9295C9.92062 12.2788 9.92062 11.2236 10.5714 10.5729C11.2222 9.92209 12.2773 9.92209 12.9281 10.5729L18.5855 16.2303Z" fill="white"/>
@@ -40,22 +38,7 @@ const CanvasPage: React.FC = (props) => {
             </a>
           </Button>
         </div>
-      </div> : <div className={styles.errorContainer}>
-        <div className={styles.errorIcon}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path d="M18.587 16.2303C19.368 17.0114 20.6344 17.0114 21.4154 16.2303L27.0729 10.5729C27.7236 9.92209 28.7788 9.92209 29.4295 10.5729C30.0803 11.2236 30.0803 12.2788 29.4295 12.9295L23.7721 18.587C22.991 19.368 22.991 20.6344 23.7721 21.4154L29.4295 27.0729C30.0803 27.7236 30.0803 28.7788 29.4295 29.4295C28.7788 30.0803 27.7236 30.0803 27.0729 29.4295L21.4154 23.7721C20.6344 22.991 19.368 22.991 18.587 23.7721L12.9295 29.4295C12.2788 30.0803 11.2236 30.0803 10.5729 29.4295C9.92209 28.7788 9.92209 27.7236 10.5729 27.0729L16.2303 21.4154C17.0114 20.6344 17.0114 19.368 16.2303 18.587L10.5729 12.9295C9.92209 12.2788 9.92209 11.2236 10.5729 10.5729C11.2236 9.92209 12.2788 9.92209 12.9295 10.5729L18.587 16.2303Z" fill="white"/>
-          </svg>
-        </div>
-        <div style={{color: '#FFF', fontSize: 30, fontWeight: 700}}>
-          Transfer failed
-        </div>
-        <div style={{color: "rgba(255, 255, 255, 0.60)", fontSize: 16, marginBottom: 32}}>
-          Please try again later
-        </div>
-        <Button className={styles.errBtn} onClick={onCancel}>
-          Close
-        </Button>
-      </div>}
+      </div>
     </div>
   );
 };

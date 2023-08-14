@@ -4,12 +4,7 @@ import { defineConfig } from 'umi';
 const baseUrl = '/';
 
 export default defineConfig({
-  // antd: {},
-  // access: {},
-  // model: {},
-  // initialState: {},
-  // request: {},
-  // layout: {},
+  title: 'Axiomesh',
   jsMinifier: 'terser',
   proxy: {
     '/faucet': {
@@ -45,12 +40,8 @@ export default defineConfig({
   },
   routes: [
     {
-      path: '/',
-      redirect: '/home',
-    },
-    {
-      name: '首页',
-      path: '/home',
+      path: '',
+      redirect: '',
       component: '@/pages/home',
     },
   ],

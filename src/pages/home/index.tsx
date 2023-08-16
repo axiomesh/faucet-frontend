@@ -17,7 +17,11 @@ const HomePage: React.FC = () => {
   }
 
   const handleAddress = async () => {
-    if(!val ){
+    if(!val.trim() ){
+      setErrMsg('please enter address.');
+      return
+      // ^0x[0-9a-fA-F]{40}$
+    } else if(!(/^0x[0-9a-fA-F]{40}$/).test(val)) {
       setErrMsg('please enter correct address.');
       return
     } else {

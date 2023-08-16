@@ -10,7 +10,6 @@
 }
 
 .container{
-  padding: 48px 80px;
   font-size: 16px;
   background: #0D0D0D;
   width: 100vw;
@@ -19,13 +18,16 @@
   overflow-x: scroll;
   box-sizing: border-box;
 }
-
+.main{
+  padding: 48px 80px;
+  padding-bottom: 0;
+}
 .content{
   border-radius: 12px;
   background:  #171923;
 
   &Title{
-    padding: 180px 0 40px 0;
+    padding: 150px 0 40px 0;
   }
 
   &Bg{
@@ -42,22 +44,29 @@
     }
 
     .minTitle{
-      display: flex;
-      justify-content: center;
-      padding: 4px 0;
+      //display: flex;
+      //font-family: Inter;
+      //justify-content: center;
+      //padding: 20px 0;
+      //text-align: center;
+      //font-size: 48px;
+      //font-weight: 900;
+      //-webkit-text-fill-color: transparent;
+      //background: linear-gradient(135deg, #EBCF3E 0%, #FC9468 100%);
+      //background-clip: text;
       text-align: center;
-      font-size: 48px;
-      font-weight: 900;
-      -webkit-text-fill-color: transparent;
-      background: linear-gradient(135deg, #EBCF3E 0%, #FC9468 100%);
-      background-clip: text;
+
+      img{
+        padding: 20px 0;
+        height: 40px;
+      }
     }
     .subTitle{
       display: flex;
       justify-content: center;
       text-align: center;
       color: rgba(255, 255, 255, 0.60);
-      margin-bottom: 20px;
+      margin-bottom: 32px;
 
       div{
         padding-bottom: 20px;
@@ -73,28 +82,34 @@
     .input{
       background: #171923;
       width: 769px;
-      border-color: #718096;
-      color: #718096;
       height: 72px;
       padding: 12px 32px;
       align-items: center;
       gap: 8px;
       font-size: 16px;
+      border: 2px solid #718096;
+      color: #fff;
+      //color: #718096;
 
       &::placeholder{
         color: #718096;
       }
       //  _hover={{boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.09)"}}
-      &:hover{
-        box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.09);
-      }
+      //&:hover{
+      //  color: #fff;
+      //  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.09);
+      //}
+      //&:active{
+      //  color: #fff;
+      //}
     }
     .btnBox{
       text-align: center;
-      margin-top: 20px;
+      margin-top: 40px;
       :global{
         :where(.css-dev-only-do-not-override-fpg3f5).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
           color: #fff;
+          background: #ECC94B;
         }
       }
       .btn{
@@ -107,16 +122,14 @@
         font-weight: 600;
         color: #fff;
         background: linear-gradient(143deg, #EBCF3E 0%, #FC9468 100%);
+        transition: none;
 
         &:hover{
           background: #ECC94B;
-          color: #fff;
-          box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.30);
         }
 
         &:active{
           background: #975A16;
-          color: #fff;
         }
       }
       .disabledBtn{
@@ -144,7 +157,11 @@
 }
 
 .footer {
-  padding: 45px 0;
+  padding: 45px 80px;
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: 40px;
+  box-sizing: border-box;
+  height: calc(100vh - 683px);
 
   .first{
     display: flex;
@@ -229,25 +246,27 @@
   :global{
     :where(.css-dev-only-do-not-override-fpg3f5).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
       color: #fff;
+      border-color: #FFF;
     }
   }
 
   &Btn {
     height: 48px;
     //line-height: 48px;
-    border: 0;
     padding: 8px 32px;
     //gap: 8px;
     border-radius: 12px;
     font-weight: 600;
     color: #fff;
     font-size: 18px;
-    background: rgba(0, 0, 0, 0.36);
-    //backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    background:  rgba(0, 0, 0, 0.64);
+    backdrop-filter: blur(16px);
 
     &:hover {
-      color: #fff;
-      box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.30);
+      border: 1px solid #FFF;
+      background: rgba(0, 0, 0, 0.36);
+      backdrop-filter: blur(16px);
     }
   }
 

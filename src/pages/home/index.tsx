@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
                     disabled
                     className={styles.disabledBtn}
                   >{errMsg}</Button> :
-                  <Button onClick={handleAddress} className={styles.btn}>Request for 0.5BXH</Button>}
+                  <Button onClick={handleAddress} className={styles.btn}>Request for 0.5AXM</Button>}
               </div>
               {errMsg ? <div className={styles.errorBox}>
                 <div className={styles.errorText}>

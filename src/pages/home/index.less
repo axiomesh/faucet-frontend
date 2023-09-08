@@ -1,8 +1,14 @@
 :global{
-  body{
+  body, html, div,p,li,ui{
     padding: 0;
     margin: 0;
+
+  }
+  body, html{
     font-family: Inter;
+    width: 100%;
+    height: 100%;
+    background: #0D0D0D;
   }
   a{
     color: inherit;
@@ -10,14 +16,22 @@
   }
 }
 
+.outer{
+  width: 100%;
+  height: 100%;
+  min-width: 1200px;
+  background: #0D0D0D;
+}
+
 .container{
   font-size: 16px;
-  background: #0D0D0D;
-  width: 100vw;
-  height: 100vh;
-  min-width: 1200px;
-  overflow-x: scroll;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   box-sizing: border-box;
+  padding: 0;
+  border: 0
 }
 .main{
   padding: 48px 80px;
@@ -26,17 +40,19 @@
 .content{
   border-radius: 12px;
   background:  #171923;
+  position: relative;
+  text-align: center;
 
   &Title{
-    padding: 150px 0 40px 0;
+    padding: 200px 0 40px 0;
   }
 
   &Bg{
     text-align: center;
     &Icon{
       position: absolute;
-      top: -30px;
-      left: 33%;
+      width: 100%;
+      top: -70px;
     }
 
     .miniTitle{
@@ -82,18 +98,34 @@
 
     .input{
       background: #171923;
-      width: 769px;
+      width: 770px;
       height: 72px;
       padding: 12px 32px;
+      box-sizing: border-box;
       align-items: center;
       gap: 8px;
       font-size: 16px;
-      border: 2px solid #718096;
+      border: 2px solid #2D3748;
       color: #fff;
+      background: rgba(23, 25, 35, 0.50);
       //color: #718096;
 
       &::placeholder{
         color: #718096;
+      }
+
+      &:focus-visible{
+        outline: 0px !important;
+      }
+
+      &:focus{
+        border-color: #718096 !important;
+        background: rgba(23, 25, 35, 0.50) !important;
+      }
+
+      &:hover{
+        border-color: #718096 !important;
+        background: rgba(23, 25, 35, 0.50) !important;
       }
       //  _hover={{boxShadow: "0px 4px 16px 0px rgba(0, 0, 0, 0.09)"}}
       //&:hover{
@@ -108,8 +140,8 @@
       text-align: center;
       margin-top: 40px;
       :global{
-        :where(.css-dev-only-do-not-override-fpg3f5).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
-          color: #fff;
+        :where.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+          color: #fff !important;
           background: #ECC94B;
         }
       }
@@ -127,10 +159,12 @@
 
         &:hover{
           background: #ECC94B;
+          color: #fff !important;
         }
 
         &:active{
           background: #975A16;
+          color: #fff !important;
         }
       }
       .disabledBtn{
@@ -158,11 +192,20 @@
 }
 
 .footer {
+  //position: fixed;
+  background:  rgba(255, 255, 255, 0.02);
   padding: 45px 80px;
-  background: rgba(255, 255, 255, 0.02);
+  width: 100%;
+  height: 200px;
   margin-top: 40px;
   box-sizing: border-box;
-  height: calc(100vh - 683px);
+
+  // rgba(255, 255, 255, 0.02)
+
+  //&Content{
+  //  //background:  rgba(255, 255, 255, 0.02);
+  //  //height: 160px;
+  //}
 
   .first{
     display: flex;
@@ -245,9 +288,10 @@
   }
 
   :global{
-    :where(.css-dev-only-do-not-override-fpg3f5).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
-      color: #fff;
-      border-color: #FFF;
+    .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+      color: #fff !important;
+      border-color: #FFF !important;
+      background: rgba(255, 255, 255, 0.08);
     }
   }
 

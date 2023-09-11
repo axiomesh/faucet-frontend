@@ -2,6 +2,7 @@ import styles from './index.less';
 import { Button } from 'antd';
 import Lottie from 'react-lottie'
 import jsonFile from '../../../public/project.json';
+import { useEffect } from 'react';
 
 const CanvasPage: React.FC = (props) => {
   const { onCancel, hash } = props;
@@ -11,8 +12,15 @@ const CanvasPage: React.FC = (props) => {
     animationData: jsonFile,
   };
 
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [])
+
+
+
   return (
-    <div className={styles.mask}>
+    <div className={styles.mask} style={{height: 872}}>
       <Lottie options={Options} height="100vh" width="100vw" />
       <div className={styles.maskText}>
         <div className={styles.maskCancel}>
@@ -26,7 +34,8 @@ const CanvasPage: React.FC = (props) => {
 
         <div className={styles.maskBtnContainer}>
           <Button className={styles.maskBtn} style={{fontSize: 16}} >
-            <a className={styles.maskLink} target="_blank" href= {`http://172.16.13.131/#/txs-detail/${hash}`}>
+            <a className={styles.maskLink} target="_blank" href= {`${window.BrowerUrl}/#/txs-detail/${hash}`}>
+            {/*<a className={styles.maskLink} target="_blank" href= {`http://localhost:3000/#/txs-detail/${hash}`}>*/}
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" style={{marginRight: 14}}>
                 <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M2.59921 11.4568C2.37339 11.2338 1.96579 11.2139 1.87941 11.5193C1.83413 11.6793 1.80957 11.8482 1.80957 12.0254C1.80957 12.8688 2.36595 13.5252 3.06588 13.9289L10.3644 18.1392C11.0695 18.546 11.9365 18.7233 12.7543 18.7233C13.5721 18.7233 14.4391 18.546 15.1442 18.1392L22.4427 13.9289C23.1426 13.5252 23.699 12.8688 23.699 12.0254C23.699 11.8482 23.6744 11.6793 23.6292 11.5193C23.5428 11.2139 23.1352 11.2338 22.9094 11.4568C22.7434 11.6206 22.5495 11.7647 22.338 11.8867L21.644 12.2871C21.6119 12.3093 21.5758 12.3324 21.5352 12.3558L14.2367 16.5661C13.8725 16.7761 13.338 16.9072 12.7543 16.9072C12.1706 16.9072 11.6361 16.7761 11.2719 16.5661L3.97337 12.3558C3.93276 12.3324 3.89665 12.3093 3.8646 12.2871L3.17059 11.8867C2.9591 11.7647 2.76518 11.6206 2.59921 11.4568Z" fill="white"/>
                 <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M2.60019 15.9833C2.37436 15.7603 1.96677 15.7404 1.88039 16.0458C1.8351 16.2058 1.81055 16.3748 1.81055 16.5519C1.81055 17.3953 2.36693 18.0517 3.06685 18.4554L10.3653 22.6657C11.0705 23.0725 11.9375 23.2498 12.7553 23.2498C13.5731 23.2498 14.4401 23.0725 15.1452 22.6657L22.4437 18.4554C23.1436 18.0517 23.7 17.3953 23.7 16.5519C23.7 16.3748 23.6754 16.2058 23.6301 16.0458C23.5438 15.7404 23.1362 15.7604 22.9103 15.9833C22.7444 16.1471 22.5505 16.2912 22.339 16.4132L21.645 16.8136C21.6129 16.8358 21.5768 16.8589 21.5362 16.8823L14.2377 21.0926C13.8735 21.3026 13.339 21.4337 12.7553 21.4337C12.1715 21.4337 11.637 21.3026 11.2728 21.0926L3.97435 16.8823C3.93374 16.8589 3.89763 16.8358 3.86558 16.8136L3.17156 16.4132C2.96007 16.2912 2.76616 16.1471 2.60019 15.9833Z" fill="white"/>

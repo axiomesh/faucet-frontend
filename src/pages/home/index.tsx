@@ -1,15 +1,22 @@
 import styles from './index.less';
 import { Input, Button } from 'antd';
 import CanvasPage from './mask';
-import { useState } from 'react';
+import { createRef, useState } from 'react';
 import { postAddress } from '@/services/home';
 import titleImg from '@/assets/title.png';
+import { ethers } from "ethers";
+
 
 const HomePage: React.FC = () => {
   const [show, setShow] = useState(false);
   const [errMsg, setErrMsg] = useState('');
   const [val, setVal] = useState('');
   const [hash, setHash] = useState('');
+  const eleRef = createRef();
+  const provider = new ethers.JsonRpcProvider(window.ST_URL)
+
+
+
 
   const handleChangeValue = (e) => {
     setErrMsg('');
@@ -35,6 +42,7 @@ const HomePage: React.FC = () => {
       } else {
         setShow(true);
         setErrMsg('');
+       await provider.getTransactionReceipt(res.txHash)
       }
     } catch (e){
       setErrMsg(typeof (e) === 'string' ? e : '')
@@ -47,7 +55,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <div className={styles.outer}>
+    <div className={styles.outer} ref={eleRef}>
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.content}>

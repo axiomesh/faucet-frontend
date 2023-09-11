@@ -1,6 +1,4 @@
 import { defineConfig } from 'umi';
-
-
 const baseUrl = '/';
 
 export default defineConfig({
@@ -8,7 +6,7 @@ export default defineConfig({
   jsMinifier: 'terser',
   proxy: {
     '/faucet': {
-      target: 'http://172.16.13.132:8080/',
+      target: 'http://172.16.30.82/',
       changeOrigin: true,
     },
 

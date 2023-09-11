@@ -250,7 +250,6 @@
 .mask{
   position: absolute;
   width: 100vw;
-  height: 100vh;
   z-index: 10;
   top: 0px;
   left: 0px;
@@ -271,7 +270,7 @@
     font-weight: 600;
     //opacity: 1; /* 初始opacity为0，即完全透明 */
     //transition: opacity 1s ease-in-out;
-    animation: myfirst 8s;
+    animation: myfirst 10s;
   }
 
   &Cancel{
@@ -298,7 +297,7 @@
   &Btn {
     height: 68px;
     //line-height: 48px;
-    padding: 16px 32px 16px 20px;
+    padding: 0;
     //gap: 8px;
     border-radius: 12px;
     font-weight: 600;
@@ -318,6 +317,10 @@
   &Link{
     display: flex;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    //padding: 16px 32px 16px 20px;
   }
 }
 
@@ -334,7 +337,7 @@
   padding: 40px;
   align-items: center;
   text-align: center;
-  animation: errorBox 8s;
+  animation: errorBox 10s;
 
   .errorIcon{
     display: inline-block;

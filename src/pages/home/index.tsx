@@ -1,7 +1,7 @@
 import styles from './index.less';
 import { Input, Button } from 'antd';
 import CanvasPage from './mask';
-import { createRef, useState } from 'react';
+import {useState } from 'react';
 import { postAddress } from '@/services/home';
 import titleImg from '@/assets/title.png';
 import { ethers } from "ethers";
@@ -12,7 +12,8 @@ const HomePage: React.FC = () => {
   const [errMsg, setErrMsg] = useState('');
   const [val, setVal] = useState('');
   const [hash, setHash] = useState('');
-  const eleRef = createRef();
+  const [showBtn, setShowBtn] = useState('');
+  const [loading, setLoading] = useState(false);
   const provider = new ethers.JsonRpcProvider(window.ST_URL)
 
 
@@ -21,6 +22,10 @@ const HomePage: React.FC = () => {
   const handleChangeValue = (e) => {
     setErrMsg('');
     setVal(e.target.value);
+  }
+
+  const getRes = async (res) => {
+    return  provider.getTransactionReceipt(res.txHash);
   }
 
   const handleAddress = async () => {
@@ -35,27 +40,36 @@ const HomePage: React.FC = () => {
       setErrMsg('');
     }
     try{
+      setLoading(true)
       const res = await postAddress(val);
       setHash(res.txHash);
       if(res.msg !== 'ok') {
         setErrMsg(res.msg);
       } else {
+        // const result = await provider.getTransactionReceipt(res.txHash)
         setShow(true);
         setErrMsg('');
-       await provider.getTransactionReceipt(res.txHash)
+        setTimeout(async () => {
+          const resData = await getRes(res);
+          console.log('resData', resData)
+          setLoading(false)
+          setShowBtn(resData)
+        }, 5000)
       }
     } catch (e){
+      console.log(e);
       setErrMsg(typeof (e) === 'string' ? e : '')
     }
 
   }
 
   const handleCancel = () => {
-    setShow(false)
+    setShow(false);
+    setShowBtn('');
   }
 
   return (
-    <div className={styles.outer} ref={eleRef}>
+    <div className={styles.outer}>
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.content}>
@@ -156,7 +170,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       {
-        show ? <CanvasPage hash={hash} onCancel={handleCancel} /> : null
+        show ? <CanvasPage hash={hash} onCancel={handleCancel} showBtn={showBtn} loading={loading} /> : null
       }
     </div>
   );

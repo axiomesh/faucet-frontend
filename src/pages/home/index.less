@@ -242,7 +242,7 @@
 @keyframes errorBox
 {
   0%   {opacity: 0}
-  25%  {opacity: 0}
+  25%  {opacity: 0.5}
   50%  {opacity: 0.5}
   100% {opacity: 1}
 }
@@ -270,7 +270,7 @@
     font-weight: 600;
     //opacity: 1; /* 初始opacity为0，即完全透明 */
     //transition: opacity 1s ease-in-out;
-    animation: myfirst 10s;
+    //animation: myfirst 10s;
   }
 
   &Cancel{
@@ -324,20 +324,13 @@
   }
 }
 
+
 .errorContainer{
-  position: absolute;
-  z-index: 30;
-  left: 50%;
-  top: 40%;
-  transform: translate(-40%,-50%);
-  border-radius: 24px;
-  background: #2D3748;
-  width: 392px;
-  box-sizing: border-box;
-  padding: 40px;
   align-items: center;
   text-align: center;
-  animation: errorBox 10s;
+  font-size: 30px;
+  font-weight: 700;
+  animation: errorBox 2s;
 
   .errorIcon{
     display: inline-block;
@@ -347,23 +340,59 @@
     box-sizing: border-box;
     padding: 16px;
     border-radius: 50%;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+  }
+
+  .errorSubTitle{
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 16px;
   }
 
   :global{
-    :where(.css-dev-only-do-not-override-fpg3f5).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+    .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
       color: #171923;
-      border-color: #F6E05E;
-      background: #F6E05E;
+      border-color: #F6E05E !important;
+      background: #F6E05E !important;
     }
   }
 
   .errBtn{
-    width: 100%;
+    width: 200px;
     height: 48px;
     background: rgba(0,0,0,0);
     border-radius: 12px;
     border: 1px solid  #ECC94B;
-    color: #ECC94B;
+    background: #ECC94B;
+    color:#fff;
+    margin-top: 32px;
   }
+}
+
+@keyframes fadeIn
+{
+  0%   {opacity: 0}
+  25%  {opacity: 0.25}
+  50%  {opacity: 0.5}
+  100% {opacity: 1}
+}
+
+
+.fadeIn{
+  //opacity: 1; /* 初始opacity为0，即完全透明 */
+  //transition: opacity 10s ease-in-out;
+  animation: fadeIn 2s; /** 动画属性 */
+}
+
+@keyframes successFadeIn
+{
+  0%   {opacity: 0}
+  25%  {opacity: 0.25}
+  50%  {opacity: 0.5}
+  100% {opacity: 1}
+}
+.successFadeIn{
+  //opacity: 1; /* 初始opacity为0，即完全透明 */
+  //transition: opacity 10s ease-in-out;
+  animation: successFadeIn 2s; /** 动画属性 */
 }

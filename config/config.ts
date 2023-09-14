@@ -2,7 +2,7 @@ import { defineConfig } from 'umi';
 const baseUrl = '/';
 
 export default defineConfig({
-  title: 'Axiomesh',
+  title: 'AXM Faucet',
   jsMinifier: 'terser',
   proxy: {
     '/faucet': {

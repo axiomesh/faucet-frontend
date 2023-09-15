@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const CanvasPage: React.FC = (props) => {
   const { onCancel, hash, showBtn, loading } = props;
   const Options = {
-    loop: false,
+    loop: true,
     autoplay: true,
     animationData: jsonFile,
   };
@@ -37,7 +37,7 @@ const CanvasPage: React.FC = (props) => {
           <div>The transfer has been made to your Wallet address.</div>
           <div className={styles.maskBtnContainer}>
             <Button className={styles.maskBtn} style={{fontSize: 16}} >
-              <a className={styles.maskLink} target="_blank" href= {`${window.BrowerUrl}/#/txs-detail/${hash}`}>
+              <a className={styles.maskLink} target="_blank" href= {`${window.BrowerUrl}/tx/${hash}`}>
                 {/*<a className={styles.maskLink} target="_blank" href= {`http://localhost:3000/#/txs-detail/${hash}`}>*/}
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" style={{marginRight: 14}}>
                   <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M2.59921 11.4568C2.37339 11.2338 1.96579 11.2139 1.87941 11.5193C1.83413 11.6793 1.80957 11.8482 1.80957 12.0254C1.80957 12.8688 2.36595 13.5252 3.06588 13.9289L10.3644 18.1392C11.0695 18.546 11.9365 18.7233 12.7543 18.7233C13.5721 18.7233 14.4391 18.546 15.1442 18.1392L22.4427 13.9289C23.1426 13.5252 23.699 12.8688 23.699 12.0254C23.699 11.8482 23.6744 11.6793 23.6292 11.5193C23.5428 11.2139 23.1352 11.2338 22.9094 11.4568C22.7434 11.6206 22.5495 11.7647 22.338 11.8867L21.644 12.2871C21.6119 12.3093 21.5758 12.3324 21.5352 12.3558L14.2367 16.5661C13.8725 16.7761 13.338 16.9072 12.7543 16.9072C12.1706 16.9072 11.6361 16.7761 11.2719 16.5661L3.97337 12.3558C3.93276 12.3324 3.89665 12.3093 3.8646 12.2871L3.17059 11.8867C2.9591 11.7647 2.76518 11.6206 2.59921 11.4568Z" fill="white"/>

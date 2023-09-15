@@ -21,6 +21,14 @@
   //body::-webkit-scrollbar{
   //  width: 0;
   //}
+
+  .ant-btn-loading-icon{
+    display: none !important;
+  }
+
+  .define-loading{
+    display: inline-block !important;
+  }
 }
 
 .outer{
@@ -174,7 +182,9 @@
         height: 48px;
         //line-height: 48px;
         border: 0;
-        padding: 12px 32px;
+        padding: 12px 0;
+        width: 206px;
+        text-align: center;
         gap: 8px;
         border-radius: 12px;
         font-weight: 600;
@@ -189,6 +199,27 @@
 
         &:active{
           background: #975A16;
+          color: #fff !important;
+        }
+      }
+      .btnLoading{
+        height: 48px;
+        //line-height: 48px;
+        border: 0;
+        padding: 12px 0;
+        width: 206px;
+        text-align: center;
+        gap: 8px;
+        border-radius: 12px;
+        font-weight: 600;
+        color: #fff;
+        background: rgba(236, 201, 75, 0.50);
+        transition: none;
+        &:hover{
+          color: #fff !important;
+        }
+
+        &:active{
           color: #fff !important;
         }
       }

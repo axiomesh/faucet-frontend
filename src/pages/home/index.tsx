@@ -14,9 +14,8 @@ const HomePage: React.FC = () => {
   const [hash, setHash] = useState('');
   const [showBtn, setShowBtn] = useState('');
   const [loading, setLoading] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(false);
   const provider = new ethers.JsonRpcProvider(window.ST_URL)
-
-
 
 
   const handleChangeValue = (e) => {
@@ -41,6 +40,7 @@ const HomePage: React.FC = () => {
     }
     try{
       setLoading(true)
+      setBtnLoading(true)
       const res = await postAddress(val);
       setHash(res.txHash);
       if(res.msg !== 'ok') {
@@ -54,13 +54,14 @@ const HomePage: React.FC = () => {
           console.log('resData', resData)
           setLoading(false)
           setShowBtn(resData)
-        }, 5000)
+        }, 10000)
       }
     } catch (e){
       console.log(e);
       setErrMsg(typeof (e) === 'string' ? e : '')
+    } finally {
+      setBtnLoading(false);
     }
-
   }
 
   const handleCancel = () => {
@@ -102,7 +103,7 @@ const HomePage: React.FC = () => {
                   <img src={titleImg} alt='' />
                 </div>
                 <div className={styles.subTitle}>
-                  <div>fill your address below and get 0.5 test AXM for free</div>
+                  <div>fill your address below and get 100 test AXM for free</div>
                 </div>
                 <div className={styles.inputBox}>
                   <Input onChange={handleChangeValue} placeholder="Address" className={styles.input} />
@@ -112,7 +113,24 @@ const HomePage: React.FC = () => {
                       disabled
                       className={styles.disabledBtn}
                     >{errMsg}</Button> :
-                    <Button onClick={handleAddress} className={styles.btn}>Request for 0.5AXM</Button>}
+                    <Button loading={btnLoading} onClick={handleAddress} className={btnLoading ? styles.btnLoading :styles.btn} >
+                      Request for 100AXM
+                      {btnLoading ?<span role="img" className="ant-btn-icon ant-btn-loading-icon define-loading" style={{marginLeft: 8}}>
+                        <span className="anticon anticon-loading anticon-spin">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M7.99992 14.6666C11.6818 14.6666 14.6666 11.6819 14.6666 7.99998C14.6666 4.31808 11.6818 1.33331 7.99992 1.33331C4.31802 1.33331 1.33325 4.31808 1.33325 7.99998C1.33325 11.6819 4.31802 14.6666 7.99992 14.6666Z" stroke="url(#paint0_linear_3379_28339)" stroke-width="2.66667"/>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58162 0 0 3.58162 0 8H2.66667C2.66667 5.05438 5.05438 2.66667 8 2.66667C8.73638 2.66667 9.33333 2.06971 9.33333 1.33333C9.33333 0.596954 8.73638 0 8 0Z" fill="white"/>
+                          <defs>
+                          <linearGradient id="paint0_linear_3379_28339" x1="5.08712" y1="9.83198" x2="11.2838" y2="3.70438" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="white"/>
+                          <stop offset="1" stop-color="white" stop-opacity="0"/>
+                          </linearGradient>
+                          </defs>
+                          </svg>
+                        </span>
+                      </span> : null}
+                    </Button>}
+
                 </div>
                 {errMsg ? <div className={styles.errorBox}>
                   <div className={styles.errorText}>
@@ -166,7 +184,7 @@ const HomePage: React.FC = () => {
               </a>
             </div>
           </div>
-          <div style={{color: '#CBD5E0'}}>Axiomesh all rights reserved</div>
+          <div style={{color: '#CBD5E0'}}>Axiomesh all rights reserved.</div>
         </div>
       </div>
       {

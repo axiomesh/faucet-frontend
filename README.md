@@ -1,3 +1,20 @@
-# README
+# explorer-frontend
 
-`@umijs/max` 模板项目，更多功能参考 [Umi Max 简介](https://umijs.org/docs/max/introduce)
+## Project setup
+
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+
+```
+yarn start
+```
+
+### Compiles and minifies for production
+
+```
+yarn build
+```
+

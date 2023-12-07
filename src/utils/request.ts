@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { message } from 'antd';
 
 // 只支持一层简单json格式的对象
 const jsonToUrlEncode = (data: any) =>
@@ -44,7 +45,7 @@ export default async function request(params: any) {
         } else {
             throw new Error(res?.error || 'Error');
         }
-    } catch (e) {
+    } catch (e: any) {
         const err = e.response ? e.response.data : e;
         const msg = err?.msg || err?.message || e.message || err;
 

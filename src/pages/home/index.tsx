@@ -159,7 +159,9 @@ const HomePage: React.FC = () => {
       setIsActive(false)
       return;
     }
-    if(value.indexOf('https://twitter.com/') === -1){
+    const reg1= /^https?:\/\/twitter.com/;
+    const reg2= /^https?:\/\/x.com/;
+    if(!reg1.test(value) && !reg2.test(value)){
       setUrlErr('Please enter correct URL.');
       setIsActive(false)
       return
@@ -239,7 +241,7 @@ const HomePage: React.FC = () => {
                     {
                       color: 'gray',
                       children: (
-                        <div style={{color: '#fff', textAlign: 'left', paddingLeft: 50, fontSize: 16}} className={step === 1 ? styles.step1 : `${styles.step1} ${styles.thin}`}>
+                        <div style={{color: '#fff', textAlign: 'left', paddingLeft: 50, fontSize: 16, fontFamily: 'Inter-Bold'}} className={step === 1 ? styles.step1 : `${styles.step1} ${styles.thin}`}>
                           <div className={styles.firstIndexNum}>1</div>
                           <p>Fill your address below and get 100 test AXM for free</p>
 
@@ -268,10 +270,10 @@ const HomePage: React.FC = () => {
                       children: (
                         <div style={{color: '#fff', textAlign: 'left', paddingLeft: 50, fontSize: 16}} className={step === 1 ? styles.step2 : `${styles.step2} ${styles.strong}`}>
                           <div className={styles.indexNum}>2</div>
-                          <p style={{color: step=== 1 ? "rgba(255,255,255,.6)" : 'inherit'}}>Follow @Axiomesh and tweet for a 2x bonus</p>
+                          <p style={{color: step=== 1 ? "rgba(255,255,255,.6)" : 'inherit', fontFamily: 'Inter-Bold'}}>Follow @Axiomesh and tweet for a 2x bonus</p>
                           <div style={{color: "rgba(255,255,255,.6)"}} className={step === 1 ? styles.step2Content : `${styles.step2Content} ${styles.show}`}>
-                            <div className={styles.followBox}>
-                              <div>1. Follow @Axiomesh</div>
+                            <div className={styles.followBox} style={{marginBottom: 12}}>
+                              <div >1. Follow @Axiomesh</div>
                               <Button className={styles.followBtn}>
                                 <a rel="noreferrer" target="_blank" href='https://twitter.com/axiomesh' className={styles.btnText}>Follow</a>
                               </Button>
@@ -283,7 +285,7 @@ const HomePage: React.FC = () => {
                               </Button>
                             </div>
                             <div>
-                              <div style={{color: '#fff', marginTop: 12}}>Tweet URL</div>
+                              <div style={{color: '#fff', marginTop: 12, fontFamily: 'Inter-Bold'}}>Tweet URL</div>
                               <div style={{marginTop: 12, marginBottom: 16}}>
                                 <div className={styles.followBox}>
                                   <Input placeholder="Tweet URL" onChange={handleChangeUrl} onBlur={handleUrlBlur} className={urlErr ? `${styles.followInput} ${styles.inputError}` :styles.followInput} />
@@ -314,17 +316,17 @@ const HomePage: React.FC = () => {
                                 </div>
                                 {urlErr ? <div className={styles.error} style={{width: "calc(100% - 206px)"}}>{urlErr}</div> : null}
                               </div>
-                              <div>
+                              <div className={styles.itemSubTitle} style={{width: "calc(100% - 206px)"}}>
                                 We will automatically generate tweet content for you. Please copy it and send a tweet. Then come back and paste the tweet URL here.
                               </div>
                             </div>
                             <Divider>Or</Divider>
-                            <div>If you don't want to follow @Axiomesh or tweet on Twitter, just click the button below and get 100 AXM.</div>
+                            <div className={styles.itemSubTitle}>If you don't want to follow @Axiomesh or tweet on Twitter, just click the button below and get 100 AXM.</div>
                             <div className={styles.btnBox}>
                               {submitErrMsg ==='The address already has enough test tokens' || submitErrMsg === 'The address has recently received test tokens' ?<Button
                                   disabled
                                   className={styles.disabledBtn}
-                                >{errMsg}</Button> :
+                                >{submitErrMsg}</Button> :
                                 <Button loading={btnLoading} onClick={handleSubmit} style={{width: 300}} className={btnLoading ? styles.btnLoading :styles.btn} >
                                   No thanks, just send me 100 AXM
                                   {btnLoading ?<span role="img" className="ant-btn-icon ant-btn-loading-icon define-loading" style={{marginLeft: 8}}>

@@ -6,7 +6,7 @@ export default defineConfig({
   jsMinifier: 'terser',
   proxy: {
     '/faucet': {
-      target: 'http://10.2.66.176:8080/',
+      target: 'http://172.16.30.83/',
       changeOrigin: true,
     },
 

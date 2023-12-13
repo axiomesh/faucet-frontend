@@ -5,11 +5,12 @@ import { directClaim, preCheck, tweetClaim } from '@/services/home';
 import logo from '@/assets/logo.svg'
 // import titleImg from '@/assets/title.png';
 import { ethers } from "ethers";
-import { Timeline, Input, Button, Divider } from 'antd';
+import { Timeline, Input, Button, Divider, Tooltip } from 'antd';
 import Icon from '@ant-design/icons';
 import { timelineIcon, defaultTimelineIcon, activeTimelineIcon } from '@/componments/Icon';
 import CopyModal from './copy-modal';
 import { Layout } from 'antd';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 const { Content, Footer } = Layout;
 
@@ -27,6 +28,7 @@ const HomePage: React.FC = () => {
   const [btnLoading, setBtnLoading] = useState(false);
   const [urlLoading, setUrlLoading] = useState(false);
   const provider = new ethers.JsonRpcProvider(window.ST_URL);
+  const [copyTooltip, setCopyTooltip] = useState(false);
 
   const [step, setStep] = useState(1);
   const [isActive, setIsActive] = useState(false);
@@ -320,8 +322,8 @@ const HomePage: React.FC = () => {
                                 We will automatically generate tweet content for you. Please copy it and send a tweet. Then come back and paste the tweet URL here.
                               </div>
                             </div>
-                            <Divider>Or</Divider>
-                            <div className={styles.itemSubTitle}>If you don't want to follow @Axiomesh or tweet on Twitter, just click the button below and get 100 AXM.</div>
+                            <Divider>OR</Divider>
+                            <div className={styles.itemSubTitle} style={{fontSize: 16}}>If you don't want to follow @Axiomesh or tweet on Twitter, just click the button below and get 100 AXM.</div>
                             <div className={styles.btnBox}>
                               {submitErrMsg ==='The address already has enough test tokens' || submitErrMsg === 'The address has recently received test tokens' ?<Button
                                   disabled
@@ -371,18 +373,64 @@ const HomePage: React.FC = () => {
             <img src={logo} alt='logo' />
             <span style={{color: '#fff', fontSize: '20px', marginLeft: 8}}>Axiomesh AXM Faucet</span>
           </div>
-          <div style={{display: 'flex'}}>
-            <a target="_blank" href='https://twitter.com/axiomesh' className={styles.icon}>
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.5332 26C9.76035 26 7.17558 25.2227 5 23.8816C6.84714 23.9968 10.1069 23.7209 12.1345 21.857C9.08435 21.7221 7.7088 19.4675 7.52938 18.5041C7.78854 18.6004 9.02454 18.716 9.72229 18.4462C6.21363 17.5984 5.67537 14.6308 5.79498 13.7252C6.45285 14.1684 7.56925 14.3225 8.00783 14.284C4.73839 12.0294 5.91459 8.63793 6.49273 7.90568C8.83899 11.0385 12.3553 12.7979 16.7055 12.8958C16.6234 12.5491 16.5801 12.1882 16.5801 11.8174C16.5801 9.15684 18.8115 7 21.564 7C23.0022 7 24.2981 7.5888 25.2077 8.53061C26.1688 8.31357 27.6151 7.80549 28.3222 7.36613C27.9658 8.59939 26.8562 9.62819 26.1851 10.0095C26.1796 9.99647 26.1906 10.0225 26.1851 10.0095C26.7746 9.92355 28.3698 9.62809 29 9.21602C28.6884 9.90886 27.512 11.0608 26.5466 11.7057C26.7262 19.3401 20.6656 26 12.5332 26Z" fill="currentColor"/>
+          <div style={{display: 'flex', alignItems: "center" }}>
+            <Tooltip
+              color='#DCDEE8'
+              overlayInnerStyle={{color: '#0D0D0D'}}
+              title={copyTooltip ? "Copied" : 'Copy'}
+            >
+              <CopyToClipboard
+                onCopy={() => {
+                  setCopyTooltip(true);
+                  setTimeout(() => {
+                    setCopyTooltip(false);
+                  }, 1000);
+                }}
+                text={window.supportMail}
+              >
+                <div>
+                  <div className={styles.mail}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                      <g filter="url(#filter0_f_5943_7144)">
+                        <circle cx="10.3298" cy="10" r="2.5" fill="#ECC94B" fillOpacity="0.2"/>
+                      </g>
+                      <path fillRule="evenodd" clipRule="evenodd" d="M15.3103 5H5.35427L10.3323 9.04798L15.3103 5ZM3.24836 4.8648C2.98395 5.26131 2.82983 5.73766 2.82983 6.25V13.75C2.82983 15.1307 3.94912 16.25 5.32983 16.25H15.3298C16.7105 16.25 17.8298 15.1307 17.8298 13.75V6.25C17.8298 4.86929 16.7105 3.75 15.3298 3.75H5.32983C4.63819 3.75 4.01214 4.03087 3.55953 4.48478C3.44387 4.60074 3.33953 4.728 3.24831 4.86475L3.24836 4.8648ZM4.22716 5.66073L9.36245 9.83661C9.89807 10.2722 10.7665 10.2722 11.3021 9.83661L16.434 5.6635C16.5271 5.8384 16.5798 6.03804 16.5798 6.25V13.75C16.5798 14.4404 16.0202 15 15.3298 15H5.32983C4.63948 15 4.07983 14.4404 4.07983 13.75V6.25C4.07983 6.03692 4.13315 5.8363 4.22716 5.66073Z" fill="#718096"/>
+                      <defs>
+                        <filter id="filter0_f_5943_7144" x="2.82983" y="2.5" width="15" height="15" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                          <feGaussianBlur stdDeviation="2.5" result="effect1_foregroundBlur_5943_7144"/>
+                        </filter>
+                      </defs>
+                    </svg>
+                    <span>{window.supportMail}</span>
+                  </div>
+                </div>
+              </CopyToClipboard>
+            </Tooltip>
+            <a rel="noreferrer" target="_blank" href={window.TwitterUrl}  style={{marginLeft: 8}}  className={styles.icon}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="15.9993" cy="16.0003" r="12.8333" stroke="currentColor"/>
+                <path d="M13.5428 22.9997C11.6557 22.9997 9.89662 22.4508 8.41602 21.5038C9.67309 21.5851 11.8916 21.3903 13.2714 20.0741C11.1956 19.9789 10.2595 18.3868 10.1374 17.7065C10.3138 17.7745 11.1549 17.8562 11.6298 17.6657C9.24196 17.067 8.87564 14.9714 8.95704 14.3319C9.40476 14.6449 10.1645 14.7537 10.463 14.7265C8.23798 13.1345 9.03845 10.7396 9.4319 10.2225C11.0287 12.4347 13.4217 13.6772 16.3822 13.7463C16.3264 13.5015 16.2969 13.2466 16.2969 12.9848C16.2969 11.106 17.8155 9.58301 19.6888 9.58301C20.6675 9.58301 21.5494 9.99878 22.1685 10.6638C22.8225 10.5106 23.8069 10.1518 24.2881 9.84154C24.0455 10.7124 23.2904 11.4389 22.8336 11.7081C22.8299 11.6989 22.8374 11.7173 22.8336 11.7081C23.2349 11.6474 24.3205 11.4388 24.7493 11.1478C24.5373 11.6371 23.7367 12.4505 23.0797 12.9059C23.2019 18.2969 19.0773 22.9997 13.5428 22.9997Z" fill="currentColor"/>
               </svg>
-              <span>Twitter</span>
             </a>
-            <a target="_blank" href='https://github.com/axiomesh'  style={{marginLeft: 28}} className={styles.icon}>
+            <a rel="noreferrer" target="_blank" href={window.DiscordUrl}   style={{marginLeft: 8}} className={styles.icon}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="15.9993" cy="16.0003" r="12.8333" stroke="currentColor"/>
+                <path d="M22.016 10.753C20.894 10.2598 19.6942 9.90135 18.44 9.69727C18.2859 9.95891 18.106 10.3108 17.9819 10.5908C16.6486 10.4024 15.3275 10.4024 14.0187 10.5908C13.8947 10.3108 13.7106 9.95891 13.5552 9.69727C12.2996 9.90135 11.0985 10.2611 9.97648 10.7556C7.71336 13.9686 7.09987 17.1019 7.40661 20.1905C8.90763 21.2437 10.3623 21.8834 11.7924 22.302C12.1455 21.8455 12.4605 21.3601 12.7318 20.8486C12.2151 20.6641 11.7202 20.4365 11.2525 20.1722C11.3766 20.0859 11.4979 19.9956 11.6152 19.9028C14.4673 21.156 17.5661 21.156 20.3841 19.9028C20.5027 19.9956 20.624 20.0859 20.7467 20.1722C20.2778 20.4378 19.7815 20.6654 19.2648 20.8499C19.5361 21.3601 19.8497 21.8468 20.2041 22.3033C21.6356 21.8847 23.0916 21.245 24.5927 20.1905C24.9526 16.61 23.9778 13.5055 22.016 10.753ZM13.1203 18.291C12.2641 18.291 11.562 17.5401 11.562 16.6257C11.562 15.7112 12.2491 14.959 13.1203 14.959C13.9915 14.959 14.6936 15.7099 14.6786 16.6257C14.68 17.5401 13.9915 18.291 13.1203 18.291ZM18.879 18.291C18.0228 18.291 17.3207 17.5401 17.3207 16.6257C17.3207 15.7112 18.0078 14.959 18.879 14.959C19.7501 14.959 20.4523 15.7099 20.4373 16.6257C20.4373 17.5401 19.7501 18.291 18.879 18.291Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a rel="noreferrer" target="_blank" href={window.GitUrl}  style={{marginLeft: 8}} className={styles.icon}>
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.8871 4.26666C9.2595 4.26666 3.88525 9.63996 3.88525 16.2685C3.88525 21.5713 7.32413 26.07 12.0928 27.657C12.6926 27.7681 12.9129 27.3967 12.9129 27.0796C12.9129 26.7935 12.9017 25.848 12.8966 24.8451C9.5576 25.5711 8.85305 23.4291 8.85305 23.4291C8.30711 22.0418 7.52048 21.673 7.52048 21.673C6.43161 20.9281 7.60256 20.9433 7.60256 20.9433C8.80778 21.0281 9.44239 22.1802 9.44239 22.1802C10.5128 24.015 12.25 23.4845 12.9349 23.1779C13.0426 22.4021 13.3537 21.8728 13.6969 21.5731C11.0312 21.2695 8.2288 20.2404 8.2288 15.6417C8.2288 14.3314 8.69765 13.2607 9.46545 12.4202C9.34082 12.1179 8.93005 10.8972 9.5817 9.24406C9.5817 9.24406 10.5895 8.92148 12.8831 10.4743C13.8403 10.2083 14.8671 10.075 15.8871 10.0705C16.907 10.075 17.9345 10.2083 18.8937 10.4743C21.1845 8.92148 22.1909 9.24406 22.1909 9.24406C22.8442 10.8972 22.4332 12.1179 22.3086 12.4202C23.0781 13.2607 23.5437 14.3313 23.5437 15.6417C23.5437 20.2513 20.7361 21.2664 18.0636 21.5635C18.494 21.9359 18.8776 22.6664 18.8776 23.786C18.8776 25.3918 18.8637 26.6843 18.8637 27.0796C18.8637 27.399 19.0797 27.7733 19.6881 27.6554C24.4542 26.0666 27.8888 21.5695 27.8888 16.2685C27.8888 9.63996 22.5153 4.26666 15.8871 4.26666Z" fill="currentColor"/>
               </svg>
-              <span>Github</span>
+            </a>
+
+            <a rel="noreferrer" target="_blank" href={window.ForumUrl}  style={{marginLeft: 8}} className={styles.icon}>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="15.9993" cy="16.0003" r="12.8333" stroke="currentColor"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M23.0312 12.2812C23.0312 10.7279 21.7721 9.46875 20.2188 9.46875H11.7812C10.2279 9.46875 8.96875 10.7279 8.96875 12.2812V17.9062C8.96875 19.4596 10.2279 20.7188 11.7812 20.7188V22.5369C11.7812 23.0861 12.2264 23.5312 12.7756 23.5312C13.0393 23.5312 13.2923 23.4265 13.4787 23.24L16 20.7187L20.2188 20.7188C21.7721 20.7188 23.0312 19.4596 23.0312 17.9062V12.2812ZM18.3584 15.094C18.3584 15.62 18.7847 16.0464 19.3107 16.0464C19.8367 16.0464 20.2631 15.62 20.2631 15.094C20.2631 14.568 19.8367 14.1416 19.3107 14.1416C18.7847 14.1416 18.3584 14.568 18.3584 15.094ZM15.0473 15.094C15.0473 15.62 15.4737 16.0464 15.9997 16.0464C16.5257 16.0464 16.9521 15.62 16.9521 15.094C16.9521 14.568 16.5257 14.1416 15.9997 14.1416C15.4737 14.1416 15.0473 14.568 15.0473 15.094ZM12.6887 16.0464C12.1627 16.0464 11.7363 15.62 11.7363 15.094C11.7363 14.568 12.1627 14.1416 12.6887 14.1416C13.2147 14.1416 13.6411 14.568 13.6411 15.094C13.6411 15.62 13.2147 16.0464 12.6887 16.0464Z" fill="currentColor"/>
+              </svg>
             </a>
           </div>
         </div>

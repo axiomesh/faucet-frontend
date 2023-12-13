@@ -20,7 +20,7 @@ const CanvasPage: React.FC = (props:any) => {
 
 
   return (
-    <div className={styles.mask} style={{height: '100vh', minHeight: 872}}>
+    <div className={styles.mask} style={{minHeight: 872}}>
       <Lottie options={Options} width="100%" isClickToPauseDisabled={true} />
       <div className={styles.maskText}>
         <div className={styles.maskCancel}>

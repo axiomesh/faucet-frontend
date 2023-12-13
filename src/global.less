@@ -1,0 +1,100 @@
+@import './assets/font/index.less';
+
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar-corner,
+*::-webkit-scrollbar:hover,
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+html,
+body,
+#root {
+  min-width: 1200px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Inter";
+  background: #0D0D0D;
+  overflow: hidden;
+}
+
+#root{
+  overflow: scroll;
+}
+
+.ant-timeline-item{
+  //background: p;
+  padding: 40px !important;
+  //border-radius: 20px;
+
+  .ant-timeline-item-tail{
+    border-inline-start: 1px solid #2D3748 !important;
+    top: 90px;
+    left: 60px;
+    height: calc(100% - 60px) !important;
+    z-index: 20;
+  }
+
+  .ant-timeline-item-head{
+    padding-block: 0;
+    background: rgba(0,0,0,0);
+    top: 60px;
+    left: 60px;
+  }
+}
+
+.ant-modal .ant-modal-title{
+  background-color: #2D3748;
+  font-size: 16px;
+  font-weight: 400;
+
+  .text{
+    background: linear-gradient(91deg, #EBCF3E -26.54%, #FC9468 140.68%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.ant-modal .ant-modal-content{
+  border-radius: 24px;
+  background: #2D3748;
+  box-shadow: 0px 0px 0px;
+  padding: 40px;
+
+  .ant-modal-close{
+    top: 40px;
+    right: 40px;
+    color: #fff;
+  }
+
+  .btn{
+    width: 280px;
+    margin: 0 auto;
+  }
+}
+
+.ant-modal-header{
+  margin-bottom: 0 !important;
+}
+
+.ant-divider-inner-text{
+  color: #718096;
+}
+.ant-divider-horizontal.ant-divider-with-text::before, .ant-divider-horizontal.ant-divider-with-text::after{
+  border-block-start: 1px solid #2D3748;
+  //border-block-end: 1px solid #718096;
+}
+
+.ant-layout-content{
+  min-height: calc(100vh - 200px);
+}

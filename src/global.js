@@ -1,4 +1,3 @@
-import React from 'react';
 import '../public/env';
 if ('serviceWorker' in navigator) {
   // unregister service worker

@@ -6,7 +6,7 @@ export default defineConfig({
   jsMinifier: 'terser',
   proxy: {
     '/faucet': {
-      target: 'http://172.16.30.82/',
+      target: 'http://172.16.30.83/',
       changeOrigin: true,
     },
 
@@ -15,6 +15,7 @@ export default defineConfig({
       changeOrigin: true,
     },
   },
+  headScripts: [{src: 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=_turnstileCb', defer: true, async: true}],
   base: baseUrl,
   publicPath: baseUrl,
   lessLoader: {
@@ -37,9 +38,10 @@ export default defineConfig({
     ios: 10,
   },
   routes: [
+    { path: '/', redirect: '/login' },
+    { path: '/login', component: '@/pages/cloudflare' },
     {
-      path: '',
-      redirect: '',
+      path: '/home',
       component: '@/pages/home',
     },
   ],

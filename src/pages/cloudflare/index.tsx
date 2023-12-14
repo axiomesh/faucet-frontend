@@ -8,7 +8,7 @@ const CloudflarePage: React.FC = () => {
   useEffect(() => {
     window._turnstileCb = function () {
       window.turnstile.render('#myWidget', {
-        sitekey: '0x4AAAAAAAN8UDJhIsEZUUZ4',
+        sitekey: '0x4AAAAAAAOlEs-TdbvnVv01',
         theme: 'dark',
         callback: function() {
           // ro

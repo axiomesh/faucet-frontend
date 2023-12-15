@@ -11,6 +11,8 @@ import { timelineIcon, defaultTimelineIcon, activeTimelineIcon } from '@/componm
 import CopyModal from './copy-modal';
 import { Layout } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { Simulate } from 'react-dom/test-utils';
+import progress = Simulate.progress;
 
 const { Content, Footer } = Layout;
 
@@ -34,7 +36,6 @@ const HomePage: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
   const [visible, setVisible] = useState(false);
   const [maskError, setMaskError] = useState('');
-  // const [isSuccess, setIsSuccess] =
 
 
   const handleChangeValue = (e:any) => {

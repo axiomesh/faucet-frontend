@@ -22,7 +22,7 @@ const CloudflarePage: React.FC = () => {
       <div className={styles.content}>
         <div className={styles.title}>
           <img src={logo} alt='logo' />
-          <span>faucet.aries.axiomesh.io</span>
+          <span>faucet.taurus.axiomesh.io</span>
         </div>
         <div>Checking if the site connection is secure</div>
         <div id="myWidget" style={{marginTop: 32, marginBottom: 64}}></div>

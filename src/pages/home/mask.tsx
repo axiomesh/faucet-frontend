@@ -21,7 +21,7 @@ const CanvasPage: React.FC = (props:any) => {
 
   return (
     <div className={styles.mask} style={{minHeight: 872}}>
-      <Lottie options={Options} width="100%" isClickToPauseDisabled={true} />
+      <Lottie options={Options} width="100%" height="auto" isClickToPauseDisabled={true} />
       <div className={styles.maskText}>
         <div className={styles.maskCancel}>
           <svg onClick={onCancel} xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
